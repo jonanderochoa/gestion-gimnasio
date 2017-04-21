@@ -1,0 +1,44 @@
+PROYECTO 
+
+El proyecto consiste en una aplicación web de un gimnasio. Esta desarroyado con Spring MVC, Spring JDBC con una BBDD en MySQL.
+Para el despliegue de la aplicación usamos un servidor de aplicaciones Jboss.
+
+Al acceder a la aplicacion encontramos la página inicial que contiene  la barra de navegación:
+	La pagina inicial --> Vuelve a la página inicial desde cualquier página
+	Quienes somos --> 
+	Actividades --> Muestra los ejercicios filtrados por actividades. En caso de estar logeado tambien se pueden manipular.
+	Contacto --> 
+	Servicios Web --> Muestra los servicios web REST y SOAP
+	Intranet --> Acceso para usuarios. Nos lleva directamente a la página usuarios después de logearnos
+	Idiomas	--> internacionalizacion en 3 idiomas es/en/eu.
+	Iniciar Sesión --> Logeo en la pagina inicial
+	
+#DATABASE DATA
+mysql.driver=com.mysql.jdbc.Driver
+mysql.url=jdbc:mysql://localhost:3306/gestiongimnasio
+mysql.user=root
+mysql.pass=
+
+#USUARIO
+user=admin
+pass=admin
+	
+La aplicación permite ver los ejercicios, actividades, servicios web, ... pero para acceder a la zona privada hay que pulsar intranet
+si queremos ir a usuarios o Iniciar sesion si no queremos que nos lleve a usuarios porque queremos por ejemplo modificar o crear actividades.
+
+Al entrar en la intranet una vez logeados, nos muestra los datos de los usuarios. En esta seccion podemos: Crear / Editar / Borrar usuarios y ver sus 
+entrenamientos. 
+
+En entrenamientos podemos: Crear / Editar / Borrar entrenamientos y ver sus datos con los de los ejercicios . 
+
+En entrenamientos ejercicios podemos: Crear / Editar / Borrar entrenamietoEjercicios.
+
+Toda la aplicación esta implementada con Bootstrap.
+ 
+Funcionalidades:
+El servicio web REST cliente consume un servicio web del tiempo de la pagina: 
+El servicio web REST servicio que hemos creado es el acceso a la BBDD de los ejercicios, con sus metodos de crud. No estan consumidos como cliente
+en la propia aplicación.
+
+El servicio web SOAP cliente consume la posición del usuario en función de la IP externa del usuario.
+El servicio web SOAP servicio 

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<b:beans xmlns="http://www.springframework.org/schema/security"
+         xmlns:b="http://www.springframework.org/schema/beans"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.springframework.org/schema/beans 
+         http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/security 
+        http://www.springframework.org/schema/security/spring-security.xsd">
+    
+    
+    <http auto-config="true">
+        <intercept-url pattern="/" access="permitAll" />
+        <intercept-url pattern="/login.html" access="permitAll" />
+        <intercept-url pattern="/ejercicios" access="permitAll" />
+        <intercept-url pattern="/usuarios*" access="hasRole('ROLE_USER')" />
+    	<intercept-url pattern="/usuarios*" access="hasRole('ROLE_ADMIN')" />
+         
+         <!-- Peticion por login, con los parametros y el error que produce en caso de error -->
+        <form-login  login-page="/login.html"
+                     username-parameter="userId"
+                     password-parameter="password"
+                     authentication-failure-url="/Access_Denied"/>
+        <csrf disabled="true" />
+    </http>
+    <authentication-manager>
+        <authentication-provider>
+            <user-service>
+                <user name="admin" password="admin" authorities="ROLE_ADMIN" />
+                <user name="jony" password="thor" authorities="ROLE_USER" />
+            </user-service>
+        </authentication-provider>
+    </authentication-manager>
+
+</b:beans>

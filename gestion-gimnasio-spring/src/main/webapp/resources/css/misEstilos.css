@@ -1,0 +1,33 @@
+@CHARSET "UTF-8";
+
+#header{
+	padding:20px;
+	background-color:rgba(42, 42, 42, 0.9);
+	color:white;
+}
+
+section{
+	background-color: rgba(204, 204, 255, 1);
+}
+
+footer{
+	background-color: #2B2B2B;
+	color:white;
+}
+
+body{
+	background-color: rgba(204, 204, 255, 0.7);
+}
+
+#cabecera{
+	font-weight:bold;
+	padding: 20px 0px 20px 0px;
+}
+
+#nuevo{
+	margin-bottom:20px;
+}
+
+main, footer{
+	padding: 20px 0px 20px 0px;
+}
