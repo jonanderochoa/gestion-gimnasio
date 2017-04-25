@@ -46,4 +46,8 @@ public interface EntrenamientoEjercicioDAO extends DAOSetter {
 	 * Muestra la lista de entrenamientoEjercicios para un determinado entrenamiento
 	 */
 	public List<EntrenamientoEjercicio> getByEntrenamiento(int codigo);
+	/**
+	 * Muestra un informe con los datos
+	 */
+	public EntrenamientoEjercicio getEntrenamientoEjercicioInforme(int codigo);
 }

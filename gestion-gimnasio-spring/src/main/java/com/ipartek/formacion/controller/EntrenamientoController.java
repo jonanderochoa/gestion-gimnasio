@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +24,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ipartek.formacion.dbms.persistence.Ejercicio;
 import com.ipartek.formacion.dbms.persistence.Entrenamiento;
+import com.ipartek.formacion.service.interfaces.EjercicioService;
+import com.ipartek.formacion.service.interfaces.EntrenamientoEjercicioService;
 import com.ipartek.formacion.service.interfaces.EntrenamientoService;
 
 /**
@@ -37,6 +41,10 @@ public class EntrenamientoController {
 
 	@Inject
 	private EntrenamientoService enS;
+	@Inject
+	private EjercicioService eS;
+	@Inject 
+	private EntrenamientoEjercicioService eeS;
 	//Logger
 	private static final Logger LOGGER = LoggerFactory.getLogger(EntrenamientoController.class);
 	//Que datos carga y a que vista
@@ -124,6 +132,13 @@ public class EntrenamientoController {
 		return "redirect:/entrenamientos";
 	}
 	
+	@RequestMapping(value="/edit/{codigo}", method = RequestMethod.GET)
+	public ModelAndView editarEntrenamiento(@PathVariable("codigo") int codigo){
+		mav = new ModelAndView("/entrenamientos/entrenamiento");
+		Entrenamiento entrenamiento = enS.getById(codigo);
+		mav.addObject("entrenamiento", entrenamiento);
+		return mav;
+	}
 	/**
 	 * Metodo que actualiza o crea el entrenamiento introducido como parametro
 	 * @param entrenamiento entrenamiento que se desea actualizar, crear
@@ -132,7 +147,7 @@ public class EntrenamientoController {
 	 * @return Un String con la url a la que ir
 	 */
 	@RequestMapping(value ="/save", method = RequestMethod.POST)
-	public String saveEntrenamiento(@ModelAttribute("entrenamiento") @Validated Entrenamiento entrenamiento, BindingResult bindingResult, Model model){
+	public String saveEntrenamiento(@ModelAttribute("entrenamiento") @Valid Entrenamiento entrenamiento, BindingResult bindingResult, Model model){
 		String destino = "";
 		if(bindingResult.hasErrors()){
 			LOGGER.info("Entrenamiento tiene errores");
@@ -145,7 +160,7 @@ public class EntrenamientoController {
 				enS.create(entrenamiento);
 				LOGGER.info("create");
 			}
-			destino = "redirect:/entrenamientos";
+			destino = "entrenamientoEjercicio/entrenamientoEjercicios";
 		}
 		return destino;
 	}
@@ -161,7 +176,7 @@ public class EntrenamientoController {
 		LOGGER.info("getInforme");
 		Entrenamiento entrenamiento = enS.getInforme(codigo);
 		model.addAttribute("entrenamiento", entrenamiento);
-		return "/entrenamientos/entrenamientoInforme";
+		return "entrenamientos/entrenamientoInforme";
 
 }
 }

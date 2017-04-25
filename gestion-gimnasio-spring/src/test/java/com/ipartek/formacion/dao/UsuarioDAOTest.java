@@ -35,6 +35,7 @@ public class UsuarioDAOTest {
 	UsuarioDAO uD;
 	
 	Usuario usuario;
+	Usuario usuario2;
 	int[] codigos = {0,1,2,4};
 	List<Usuario> usuarios;
 	private static final Logger LOGGER = LoggerFactory.getLogger(UsuarioDAOTest.class);
@@ -45,119 +46,140 @@ public class UsuarioDAOTest {
 		assertEquals("class com.ipartek.formacion.dbms.dao.UsuarioDAOImp", this.uD.getClass().toString());
 	}
 	
-	/**
-	 * @throws java.lang.Exception
-	 */
 	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	/**
-	 * @throws java.lang.Exception
-	 */
+	public static void setUpBeforeClass() throws Exception {}
 	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
+	public static void tearDownAfterClass() throws Exception {}
+	@After
+	public void tearDown() throws Exception {}
+	@Test
+	public void testSetDataSource() {}
+	
 	/**
+	 * Crea un nuevo usuario y le carga unos valores
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
-		usuario = new Usuario();
-		usuario.setNombre("nora");
-		usuario.setApellidos("gatitos");
-		usuario.setUser("cats");
-		usuario.setPass("blablabla");
-		usuario.setEmail("nora@esploradora.com");
-	}
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@After
-	public void tearDown() throws Exception {
-	}
-
-	/**
-	 * Test method for {@link com.ipartek.formacion.dbms.dao.UsuarioDAOImp#setDataSource(javax.sql.DataSource)}.
-	 */
-	@Test
-	public void testSetDataSource() {
-		//fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link com.ipartek.formacion.dbms.dao.UsuarioDAOImp#create(com.ipartek.formacion.dbms.persistence.Usuario)}.
-	 */
-	@Test
-	public void testCreate() {
-		LOGGER.info("testCreate");
-		//Creamos un usuario
-		//Usuario usu = uD.create(usuario);
+		LOGGER.info("setUp");
 		
+		usuario = new Usuario();
+		usuario.setNombre("miniyo");
+		usuario.setApellidos("supermi");
+		usuario.setUser("mini");
+		usuario.setPass("super");
+		usuario.setEmail("min@super.com");
+		
+		usuario2 = new Usuario();
+		usuario2.setNombre("prueba");
+		usuario2.setApellidos("prueba");
+		usuario2.setUser("prueba");
+		usuario2.setPass("prueba");
+		usuario2.setEmail("prueba@prueba.com");
 	}
 
 	/**
 	 * Comprueba que el numero de elementos activos en la BBDD es 12
-	 * Test method for {@link com.ipartek.formacion.dbms.dao.UsuarioDAOImp#getAll()}.
 	 */
-	@Test
+	@Test(timeout = 400) //Tiempo maximo de carga
 	public void testGetAll() {
-		LOGGER.info("getAll");
+		LOGGER.info("TestgetAll");
+		LOGGER.info("tamaño de BBDD usuario", usuarios.size());
 		//Cargamos la lista de la BBDD en la variable
 		List<Usuario> usuarios = uD.getAll();
 		//Numero de elementos de la BBDD
 		int size = 12;
-		//La lista tiene que ser identica
+		//La lista tiene que tener IGUAL tamaño que size
 		assertEquals(size, usuarios.size());
 	}
 
 	/**
-	 * Test method for {@link com.ipartek.formacion.dbms.dao.UsuarioDAOImp#getById(int)}.
+	 * test que comprueba si recibe bien un usuario de la BBDD
 	 */
 	@Test
 	public void testGetById() {
 		LOGGER.info("testgetById");
 		for(int i = 0; i < codigos.length; i++){
+			//Guarda en usuario los usuario de la BBDD [0, 1, 2, 4]
 			Usuario usuario = uD.getById(codigos[i]);
-			//Si no es nulo
-			assertNotNull("El usuario no es nulo");
-			//Si es igual
-			//assertEquals(expected, actual);
+			//El usuario no deberia ser nulo
+			assertNotNull("El usuario no deberia ser nulo", usuario);
+			//El usuario deberia ser nulo
+			assertNull("El usuario deberia ser nulo", uD.getById(-100));
+			//El usuario deberia ser igual
+			assertEquals(uD.getById(usuario.getCodigo()), usuario);
 		}
-		
 	}
 
 	/**
-	 * Test method for {@link com.ipartek.formacion.dbms.dao.UsuarioDAOImp#getByUser(java.lang.String)}.
+	 * Prueba la creacion de un Usuario
+	 */
+	@Test
+	public void testCreate() {
+		LOGGER.info("testCreate");
+		//Creamos un usuario
+		Usuario usu = uD.create(usuario);
+		//El usu no deberia ser nulo
+		assertNotNull("No deberia ser nulo", uD.getById(usu.getCodigo()));
+		//El usuario de la BBDD que tienen el mismo codigo que usu, deberia de ser igual a usu
+		assertEquals(uD.getById(usu.getCodigo()), usu);
+		//Elimina el usuario que hemos creado
+		uD.deleteReal(usu.getCodigo());
+	}
+	
+	/**
+	 * Este test
 	 */
 	@Test
 	public void testGetByUser() {
-		//fail("Not yet implemented");
+		LOGGER.info("testgetByUser");
+		//Carga el usuario que contenga el user=mini
+		Usuario usu = uD.getByUser("mini");
+		//El usuario no deberia ser nulo
+		assertNotNull("el objeto es nulo", usu);
+		//Carga el usuario que contenga el user=cats
+		usu = uD.getByUser("cats");
+		//El usuario deberia ser nulo
+		assertNull("el objeto es nulo", usu);
 	}
 
 	/**
-	 * Test method for {@link com.ipartek.formacion.dbms.dao.UsuarioDAOImp#update(com.ipartek.formacion.dbms.persistence.Usuario)}.
+	 * Este test 
 	 */
 	@Test
 	public void testUpdate() {
 		LOGGER.info("testUpdate");
-		//fail("Not yet implemented");
+		//Si existe el usuario con user= mini lo eliminamos
+		if(uD.getByUser("mini") != null){
+			uD.deleteReal(uD.getByUser("mini").getCodigo());
+		}else{
+			//Creamos el usuario
+			Usuario usu = uD.create(usuario);
+			//actualizamos el usuario
+			uD.update(usuario2);
+			LOGGER.info(uD.getById(usu.getCodigo()).toString());
+			//Eliminamos el usuario modificado
+			uD.deleteReal(usu.getCodigo());
+		}
 	}
 
 	/**
-	 * Test method for {@link com.ipartek.formacion.dbms.dao.UsuarioDAOImp#delete(int)}.
+	 * Este test crea un usuario y despues comprueba que lo elimina correctamente
 	 */
 	@Test
 	public void testDelete() {
 		LOGGER.info("testDelete");
-		//Creamos el usuario en la BBDD metiendole el usuario
-		Usuario usu = uD.create(usuario);
-		//Borramos el usuario en la BBDD para comprobar que se hace bien
-		uD.deleteReal(usu.getCodigo());
-		//Si no es nulo
-		assertNull("El usuario no se ha borrado correctamente", uD.getById(usu.getCodigo()));	
+		//Si existe el usuario con user= mini lo eliminamos
+		if(uD.getByUser("mini") != null){
+			uD.deleteReal(uD.getByUser("mini").getCodigo());
+		}else{
+			//Creamos el usuario en la BBDD metiendole el usuario
+			Usuario usu = uD.create(usuario);
+			//Borramos el usuario en la BBDD para comprobar que se hace bien
+			uD.deleteReal(usu.getCodigo());
+			//Si es nulo
+			assertNull("El usuario deberia de ser nulo", uD.getById(usu.getCodigo()));
+		}
 	}
 
 }

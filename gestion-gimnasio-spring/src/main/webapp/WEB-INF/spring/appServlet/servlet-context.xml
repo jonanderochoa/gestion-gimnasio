@@ -12,6 +12,17 @@
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
 
+	<!-- SET DE CONVERSORES -->
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven conversion-service="conversionService" />
+	<beans:bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean" >
+	    <beans:property name="converters">
+	        <beans:set>
+	            <beans:bean class="com.ipartek.formacion.controller.converter.UsuarioConverter"/>
+	        </beans:set>
+	    </beans:property>
+	</beans:bean>
+	
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 

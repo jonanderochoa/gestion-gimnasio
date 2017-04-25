@@ -26,15 +26,15 @@ public class EntrenamientoValidator implements Validator {
 	@Override
 	public void validate(Object obj, Errors errors) {
 		//Validamos que no este en blanco ni sea nulo
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "usuario", "form.usuarioRequerido", "tiene que introducirse un usuario");
+		//ValidationUtils.rejectIfEmptyOrWhitespace(errors, "usuario", "form.usuarioRequerido", "tiene que introducirse un usuario");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "fecha", "form.fechaRequerido", "tiene que introducirse una fecha");
 		
 		Entrenamiento entrenamiento = (Entrenamiento) obj;
 		//Validamos que el usuario exista
-		if(uS.getById(entrenamiento.getUsuario().getCodigo()) == null){
-			errors.rejectValue("usuario", "form.usuarioInvalido", new Object[] { "'id'" },
-					"Introduzca un usuario valido.");
-		}
+//		if(uS.getById(entrenamiento.getUsuario().getCodigo()) == null){
+//			errors.rejectValue("usuario", "form.usuarioInvalido", new Object[] { "'id'" },
+//					"Introduzca un usuario valido.");
+//		}
 		
 	}
 
