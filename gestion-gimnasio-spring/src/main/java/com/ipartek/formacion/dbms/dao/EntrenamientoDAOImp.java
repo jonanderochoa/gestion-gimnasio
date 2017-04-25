@@ -18,6 +18,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ipartek.formacion.dbms.dao.interfaces.EntrenamientoDAO;
 import com.ipartek.formacion.dbms.mapper.EntrenamientoExtractor;
+import com.ipartek.formacion.dbms.mapper.EntrenamientoExtractor2;
 import com.ipartek.formacion.dbms.mapper.EntrenamientoMapper;
 import com.ipartek.formacion.dbms.persistence.Entrenamiento;
 
@@ -145,7 +146,7 @@ public class EntrenamientoDAOImp implements EntrenamientoDAO {
 	@Override
 	public Entrenamiento getInforme(int codigo) {
 		LOGGER.info("getInforme");
-		final String SQL = "call entrenamientoEjerciciogetById(?);";
+		final String SQL = "call entrenamientoInforme(?);";
 		Entrenamiento entrenamiento = null;
 		try{
 			Map<Integer, Entrenamiento> entrenamientos = jdbcTemplate.query(SQL, new EntrenamientoExtractor(), new Object[] { codigo });

@@ -15,8 +15,8 @@ public class EntrenamientoEjercicio extends Ejercicio implements Serializable {
 	private static final long serialVersionUID = 1L;
 	public static final int CODIGO_NULO = -1;
 	private int codigo;
-	private int serie;
-	private int repeticion;
+	private int series;
+	private int repeticiones;	
 	private double peso;
 	private int tiempo; //minutos
 	private Entrenamiento entrenamiento;
@@ -25,16 +25,17 @@ public class EntrenamientoEjercicio extends Ejercicio implements Serializable {
 	public EntrenamientoEjercicio() {
 		super();
 		this.codigo = CODIGO_NULO;
-		this.serie = 0;
-		this.repeticion = 0;
+		this.series = 0;
+		this.repeticiones = 0;
 		this.peso = 0.0;
 		this.tiempo = 0;
 		this.activo = true;
+		this.entrenamiento = new Entrenamiento();
 	}
 	
 	@Override
 	public String toString() {
-		return "EntrenamientoEjercicio [codigo=" + codigo + ", serie=" + serie + ", repeticion=" + repeticion
+		return "EntrenamientoEjercicio [codigo=" + codigo + ", series=" + series + ", repeticiones=" + repeticiones
 				+ ", peso=" + peso + ", tiempo=" + tiempo + ", entrenamiento=" + entrenamiento + ", activo=" + activo
 				+ "]";
 	}
@@ -44,7 +45,7 @@ public class EntrenamientoEjercicio extends Ejercicio implements Serializable {
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + ((entrenamiento == null) ? 0 : entrenamiento.hashCode());
-		result = prime * result + serie;
+		result = prime * result + series;
 		result = prime * result + tiempo;
 		return result;
 	}
@@ -65,7 +66,7 @@ public class EntrenamientoEjercicio extends Ejercicio implements Serializable {
 				return false;
 		} else if (!entrenamiento.equals(other.entrenamiento))
 			return false;
-		if (serie != other.serie)
+		if (series != other.series)
 			return false;
 		if (tiempo != other.tiempo)
 			return false;
@@ -92,23 +93,23 @@ public class EntrenamientoEjercicio extends Ejercicio implements Serializable {
 	}
 
 
-	public int getSerie() {
-		return serie;
+	public int getSeries() {
+		return series;
 	}
 
 
-	public void setSerie(int serie) {
-		this.serie = serie;
+	public void setSeries(int series) {
+		this.series = series;
 	}
 
 
-	public int getRepeticion() {
-		return repeticion;
+	public int getRepeticiones() {
+		return repeticiones;
 	}
 
 
-	public void setRepeticion(int repeticion) {
-		this.repeticion = repeticion;
+	public void setRepeticiones(int repeticiones) {
+		this.repeticiones= repeticiones;
 	}
 
 

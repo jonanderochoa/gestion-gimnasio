@@ -42,7 +42,7 @@ public class EntrenamientoExtractor implements ResultSetExtractor<Map<Integer, E
 				entrenamientos.put(entrenamiento.getCodigo(), entrenamiento);
 				LOGGER.info(entrenamiento.toString());
 			}
-			//Mete enl usuario en el campo usuario de la instancia de la clase entrenamiento
+			//Mete el usuario en el campo usuario de la instancia de la clase entrenamiento
 			Integer uUsuario = rs.getInt("usuario_codigo");
 			if(uUsuario != null && uUsuario > 0){
 				Usuario usuario = new Usuario();
@@ -54,7 +54,6 @@ public class EntrenamientoExtractor implements ResultSetExtractor<Map<Integer, E
 				usuario.setEmail(rs.getString("email"));
 				usuario.setActivo(rs.getBoolean("uactivo"));
 				entrenamiento.setUsuario(usuario);
-				
 			}
 			
 			//Mete  la lista de entrenamientos ejercicio en la lista de la instancia de la clase entrenamiento
@@ -64,8 +63,8 @@ public class EntrenamientoExtractor implements ResultSetExtractor<Map<Integer, E
 				EntrenamientoEjercicio entrenamientoEjercicio = new EntrenamientoEjercicio();
 				//Entrenamiento
 				entrenamientoEjercicio.setCodigo(rs.getInt("cod_entrenamientoEjercicio"));
-				entrenamientoEjercicio.setSerie(rs.getInt("series"));
-				entrenamientoEjercicio.setRepeticion(rs.getInt("repeticiones"));
+				entrenamientoEjercicio.setSeries(rs.getInt("series"));
+				entrenamientoEjercicio.setRepeticiones(rs.getInt("repeticiones"));
 				entrenamientoEjercicio.setPeso(rs.getDouble("peso"));
 				entrenamientoEjercicio.setTiempo(rs.getInt("tiempo"));
 				entrenamientoEjercicio.setActivo(rs.getBoolean("eeactivo"));

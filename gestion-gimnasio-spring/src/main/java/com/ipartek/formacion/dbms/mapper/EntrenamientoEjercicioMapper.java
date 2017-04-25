@@ -12,6 +12,7 @@ import com.ipartek.formacion.dbms.persistence.EntrenamientoEjercicio;
 public class EntrenamientoEjercicioMapper implements RowMapper<EntrenamientoEjercicio>{
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(EntrenamientoEjercicioMapper.class);
+	
 	@Override
 	public EntrenamientoEjercicio mapRow(ResultSet rs, int rownum) throws SQLException {
 		EntrenamientoEjercicio entrenamientoEjercicio = new EntrenamientoEjercicio();
@@ -22,8 +23,8 @@ public class EntrenamientoEjercicioMapper implements RowMapper<EntrenamientoEjer
 		entrenamientoEjercicio.setDescripcion(rs.getString("descripcion"));
 		//EntrenamientoEjercicio
 		entrenamientoEjercicio.setCodigo(rs.getInt("codigo"));
-		entrenamientoEjercicio.setSerie(rs.getInt("series"));
-		entrenamientoEjercicio.setRepeticion(rs.getInt("repeticiones"));
+		entrenamientoEjercicio.setSeries(rs.getInt("series"));
+		entrenamientoEjercicio.setRepeticiones(rs.getInt("repeticiones"));
 		entrenamientoEjercicio.setPeso(rs.getDouble("peso"));
 		entrenamientoEjercicio.setTiempo(rs.getInt("tiempo"));
 		LOGGER.info(entrenamientoEjercicio.toString());

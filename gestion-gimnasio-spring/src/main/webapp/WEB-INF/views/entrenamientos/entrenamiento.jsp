@@ -24,7 +24,7 @@
 		<c:if test="${entrenamiento.codigo > 0}">
 			<c:set var="men" value="Editar" />
 		</c:if>
-		<input class="btn btn-warning" type="submit" value="${men}">
+		<input class="btn btn-success" type="submit" value="${men}">
 	</form:form>
 </main>
 <jsp:include page="../includes/footer.jsp" />

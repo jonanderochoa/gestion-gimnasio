@@ -12,8 +12,8 @@
         <intercept-url pattern="/" access="permitAll" />
         <intercept-url pattern="/login.html" access="permitAll" />
         <intercept-url pattern="/ejercicios" access="permitAll" />
-        <intercept-url pattern="/usuarios*" access="hasRole('ROLE_USER')" />
-    	<intercept-url pattern="/usuarios*" access="hasRole('ROLE_ADMIN')" />
+       <!--  <intercept-url pattern="/usuarios*" access="hasRole('ROLE_USER')" />
+    	<intercept-url pattern="/usuarios*" access="hasRole('ROLE_ADMIN')" /> -->
          
          <!-- Peticion por login, con los parametros y el error que produce en caso de error -->
         <form-login  login-page="/login.html"

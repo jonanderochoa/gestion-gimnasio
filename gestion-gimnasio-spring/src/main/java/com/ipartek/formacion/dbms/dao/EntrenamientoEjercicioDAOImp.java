@@ -16,6 +16,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
 
 import com.ipartek.formacion.dbms.dao.interfaces.EntrenamientoEjercicioDAO;
+import com.ipartek.formacion.dbms.mapper.EntrenamientoEjercicioExtractor;
 import com.ipartek.formacion.dbms.mapper.EntrenamientoEjercicioMapper;
 import com.ipartek.formacion.dbms.persistence.EntrenamientoEjercicio;
 
@@ -50,10 +51,15 @@ public class EntrenamientoEjercicioDAOImp implements EntrenamientoEjercicioDAO {
 		 * una vez creado el usuario en el procedimiento almacenado (ya que lo autogenera) 
 		 */
 		SqlParameterSource in = new MapSqlParameterSource()
-				.addValue("pseries", entrenamientoEjercicio.getSerie())
-				.addValue("prepeticiones", entrenamientoEjercicio.getRepeticion())
+				.addValue("pseries", entrenamientoEjercicio.getSeries())
+				.addValue("prepeticiones", entrenamientoEjercicio.getRepeticiones())
 				.addValue("ppeso", entrenamientoEjercicio.getPeso())
-				.addValue("ptiempo", entrenamientoEjercicio.getTiempo());
+				.addValue("ptiempo", entrenamientoEjercicio.getTiempo())
+		
+				.addValue("pactividad", entrenamientoEjercicio.getActividad())
+				.addValue("pgrupo", entrenamientoEjercicio.getGrupomuscular())
+				.addValue("pmaquina", entrenamientoEjercicio.getMaquina())
+				.addValue("pdescripcion", entrenamientoEjercicio.getDescripcion());
 		LOGGER.info(entrenamientoEjercicio.toString());
 		//jdbcCall.execute(in); Ejecuta la consulta dandole los parametros del mapa in y devuelve el out
 		//Recogemos los datos que devuelve la consulta con otro mapa llamado out
@@ -101,8 +107,8 @@ public class EntrenamientoEjercicioDAOImp implements EntrenamientoEjercicioDAO {
 		jdbcCall.withProcedureName(SQL);
 		//Le pasamos los valores de java a SQL mediante un mapa
 		SqlParameterSource in = new MapSqlParameterSource()
-				.addValue("pseries", entrenamientoEjercicio.getSerie())
-				.addValue("prepeticiones", entrenamientoEjercicio.getRepeticion())
+				.addValue("pseries", entrenamientoEjercicio.getSeries())
+				.addValue("prepeticiones", entrenamientoEjercicio.getRepeticiones())
 				.addValue("ppeso", entrenamientoEjercicio.getPeso())
 				.addValue("ptiempo", entrenamientoEjercicio.getTiempo())
 				
@@ -144,6 +150,22 @@ public class EntrenamientoEjercicioDAOImp implements EntrenamientoEjercicioDAO {
 			LOGGER.info("No hay ningun valor con ese codigo "+ e.getMessage());
 		}
 		return entrenamientoEjercicios;
+	}
+
+	@Override
+	public EntrenamientoEjercicio getEntrenamientoEjercicioInforme(int codigo) {
+		LOGGER.info("getEntrenamientoEjercicioInforme");
+		final String SQL = "call entrenamientoEjercicioInforme(?);";
+		EntrenamientoEjercicio entrenamientoEjercicio = null;
+		try{
+			Map<Integer, EntrenamientoEjercicio> entrenamientoEjercicios = jdbcTemplate.query(SQL, new EntrenamientoEjercicioExtractor(), new Object[] { codigo });
+			entrenamientoEjercicio = entrenamientoEjercicios.get(codigo);
+			LOGGER.info(entrenamientoEjercicios.toString());
+		}catch(EmptyResultDataAccessException e){
+			entrenamientoEjercicio = null;
+			LOGGER.info("No hay ningun valor con ese codigo "+ e.getMessage());
+		}
+		return entrenamientoEjercicio;
 	}
 
 }
