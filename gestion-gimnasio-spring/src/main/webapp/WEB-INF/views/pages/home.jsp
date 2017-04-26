@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<jsp:include page="includes/header.jsp"/>
 	<section class= container-fluid>	
 		<div class="row">
 			<article class="col-xs-12 col-sm-6 text-justify">
@@ -70,4 +69,3 @@
 		
 		</div>	   
 	</section>
-<jsp:include page="includes/footer.jsp"/>

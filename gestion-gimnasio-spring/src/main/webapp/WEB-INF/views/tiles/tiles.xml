@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC 
+ "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  
+ "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">  
+ 
+<tiles-definitions>  
+  
+   <!-- Base Definition -->
+   <definition name="base-definition"
+       template="/WEB-INF/views/tiles/layouts/defaultLayout.jsp">  
+       <put-attribute name="title" value="" />  
+       <put-attribute name="header" value="/WEB-INF/views/tiles/template/defaultHeader.jsp" />  
+       <put-attribute name="menu" value="/WEB-INF/views/tiles/template/defaultMenu.jsp" />  
+       <put-attribute name="body" value="" />  
+       <put-attribute name="footer" value="/WEB-INF/views/tiles/template/defaultFooter.jsp" />  
+   </definition>  
+  
+   <!-- Home Page -->
+   <definition name="home" extends="base-definition">  
+       <put-attribute name="title" value="Bienvenido" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/home.jsp" />  
+   </definition>    
+   <!-- Login Page -->
+   <definition name="login" extends="base-definition">  
+       <put-attribute name="title" value="Acceso a usuarios" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/login.jsp" />  
+   </definition> 
+   
+   <!-- USUARIOS -->
+   
+   <!-- Modifica/crea usuario -->
+   <definition name="usuario" extends="base-definition">  
+       <put-attribute name="title" value="usuario" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/usuarios/usuario.jsp" />  
+   </definition>    
+   <!-- Lisa de usuarios -->
+   <definition name="usuarios" extends="base-definition">  
+       <put-attribute name="title" value="Lista de usuarios" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/usuarios/usuarios.jsp" />  
+   </definition> 
+   <!-- Muestra un usuario -->
+   <definition name="verUsuario" extends="base-definition">  
+       <put-attribute name="title" value="Ver usuario" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/usuarios/verUsuario.jsp" />  
+   </definition> 
+   
+   <!-- EJERCICIOS -->
+   
+   <!-- Modifica/crea ejercicio -->
+   <definition name="ejercicio" extends="base-definition">  
+       <put-attribute name="title" value="ejercicio" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/ejercicios/ejercicio.jsp" />  
+   </definition>    
+   <!-- Lisa de ejercicios -->
+   <definition name="ejercicios" extends="base-definition">  
+       <put-attribute name="title" value="Lista de ejercicios" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/ejercicios/ejercicios.jsp" />  
+   </definition> 
+   
+   <!-- ENTRENAMIENTOS -->
+   
+   <!-- Modifica/crea entrenamiento -->
+   <definition name="entrenamiento" extends="base-definition">  
+       <put-attribute name="title" value="entrenamiento" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/entrenamiento/entrenamiento.jsp" />  
+   </definition>    
+   <!-- Lisa de entrenamientos -->
+   <definition name="entrenamientos" extends="base-definition">  
+       <put-attribute name="title" value="Lista de entrenamientos" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/entrenamientos/entrenamientos.jsp" />  
+   </definition> 
+   <!-- Modifica/crea entrenamientoInforme -->
+   <definition name="entrenamientoInforme" extends="base-definition">  
+       <put-attribute name="title" value="Informe de entrenamiento" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/entrenamientos/entrenamientoInforme.jsp" />  
+   </definition>    
+   <!-- Lisa de listadoEntrenamientos -->
+   <definition name="listadoEntrenamientos" extends="base-definition">  
+       <put-attribute name="title" value="Listado de entrenamientos" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/entrenamientos/listadoEntrenamientos.jsp" />  
+   </definition> 
+   
+   <!-- ENTRENAMIENTOSEJERCICIOS -->
+   
+   <!-- Modifica/crea entrenamientoEjercicio -->
+   <definition name="entrenamientoEjercicio" extends="base-definition">  
+       <put-attribute name="title" value="entrenamiento Ejercicio" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/entrenamientoEjercicio/entrenamientoEjercicio.jsp" />  
+   </definition>    
+   <!-- Lisa de entrenamientoEjercicios -->
+   <definition name="entrenamientoEjercicios" extends="base-definition">  
+       <put-attribute name="title" value="Lista de entrenamientoEjercicios" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/entrenamientoEjercicio/entrenamientoEjercicios.jsp" />  
+   </definition> 
+   
+   <!-- SERVICIOSWEB -->
+   
+   <!-- localizacion -->
+   <definition name="localizacion" extends="base-definition">  
+       <put-attribute name="title" value="Localizacion" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/sw/localizacion.jsp" />  
+   </definition>    
+   <!-- version -->
+   <definition name="version" extends="base-definition">  
+       <put-attribute name="title" value="version" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/sw/version.jsp" />  
+   </definition> 
+   <!-- Weather Page -->
+   <definition name="weather" extends="base-definition">  
+       <put-attribute name="title" value="El tiempo" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/sw/weather.jsp" />  
+   </definition> 
+   
+</tiles-definitions>

@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<jsp:include page="../includes/header.jsp" />
+
 <main>
 <div class="container">
 	<header>
@@ -64,4 +64,3 @@
 	</c:choose>
 </div>
 </main>
-<jsp:include page="../includes/footer.jsp" />

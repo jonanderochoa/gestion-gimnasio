@@ -3,7 +3,6 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib prefix="sec"	uri="http://www.springframework.org/security/tags"%>
 
-<jsp:include page="../includes/header.jsp"/>
 	<main class="center">
 		<div class="container">
 			<header><h2>Ejercicios</h2></header>
@@ -45,4 +44,3 @@
 				</c:choose>
 		</div>
 	</main>
-<jsp:include page="../includes/footer.jsp"/>

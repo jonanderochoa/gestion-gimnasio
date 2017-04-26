@@ -4,7 +4,6 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
-<jsp:include page="../includes/header.jsp" />
 <main>
 		<!-- FORMULARIO DE SPRING -->
 	<form:form action="save" method="post" modelAttribute="entrenamiento" class="form-horizontal container">
@@ -27,4 +26,3 @@
 		<input class="btn btn-success" type="submit" value="${men}">
 	</form:form>
 </main>
-<jsp:include page="../includes/footer.jsp" />

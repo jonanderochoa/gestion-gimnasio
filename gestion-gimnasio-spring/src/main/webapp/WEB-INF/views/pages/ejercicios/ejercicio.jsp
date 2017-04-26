@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<jsp:include page="../includes/header.jsp" />
 <main>
 	<form:form action="save" method="post" modelAttribute="ejercicio" class="container">
 	<c:if test="${!empty ejercicio}">
@@ -39,4 +38,3 @@
 	<input class="btn btn-success" type="submit" value="${men}">
 </form:form> 
 </main>
-<jsp:include page="../includes/footer.jsp" />
