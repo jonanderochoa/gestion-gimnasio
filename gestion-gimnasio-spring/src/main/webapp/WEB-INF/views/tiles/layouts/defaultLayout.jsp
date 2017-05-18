@@ -6,12 +6,21 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<spring:message var="nombreApp" scope="request" code="aplicacion.nombre" />
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>${nombreApp}-${seccion}</title>
+<!-- Metas -->
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<!-- Titulo -->
+		<title>
+			<!-- Nombre de la aplicacion -->
+			<spring:message text="Gestion Gimnasio" scope="page" code="aplicacion.nombre" />
+			<!-- Cogemos el titulo de tiles.xml y lo guardamos en la variable titulo -->
+			- <c:set var="titulo"><tiles:getAsString name="title"/></c:set>
+		</title>
+
 
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
@@ -39,11 +48,12 @@
 	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 	crossorigin="anonymous"></script>
 
+ <!-- Ajax -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
 <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <![endif]-->
-<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 	<body>
 		<header class="container-fluid">

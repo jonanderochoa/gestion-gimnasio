@@ -1,62 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib prefix="sec"	uri="http://www.springframework.org/security/tags"%>
-<%@ page session="false"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Gimnasio McBein</title>
-
-
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-	crossorigin="anonymous">
-	
-<!-- Mi CSS -->	
-<link rel="stylesheet" href="<c:url value="/resources/css/misEstilos.css"/>" />
-
-<!-- Optional theme -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
-	crossorigin="anonymous">
-
-<!-- JQUERY -->
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"
-	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-	crossorigin="anonymous"></script>
-
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-	crossorigin="anonymous"></script>
-
-
-<!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-<![endif]-->
-
-<!-- Mi JavaScript -->
-<script type="text/javascript" src="<c:url value="/resources/js/miJavaScript.js"/>" /></script>
-
-<!-- ACTIVA EL DISEÑO RESPONSIVE -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body class="container-fluid">
-	
-	<div id="header" class="container-fluid">
-		<header>
-			<div class="class-xs-12">
-				<h1><spring:message code="aplicacion.titulo" text="Gimnasio McBain"/></h1>
-				<spring:message code="aplicacion.subtitulo" text="Venga...vamonos"/>
-			</div>
-		</header>	
-	</div>
 	
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
