@@ -89,16 +89,18 @@ public class EjercicioRestController {
 	 * @param ucBuilder 
 	 * @return Devuelve el codigo http en funcion de si se ha podido realizar la creacion
 	 */
-	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> create(@Valid @RequestBody Ejercicio ejercicio, UriComponentsBuilder ucBuilder){
-		ResponseEntity<Void> response = null;
-		try{
+	@RequestMapping(method = RequestMethod.POST, consumes ={MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
+	public ResponseEntity<Integer> create(@Valid @RequestBody Ejercicio ejercicio, UriComponentsBuilder ucBuilder){
+		Ejercicio ej = eS.getById(ejercicio.getEjercicioCodigo());
+		ResponseEntity<Integer> response = null;
+		if(ej != null){ //Si ya existe...
+			response = new ResponseEntity<Integer>(0, HttpStatus.CONFLICT);
+		}
+		try{ //Si no existe...
 			Ejercicio ejer = eS.create(ejercicio);
-			HttpHeaders headers = new HttpHeaders();
-			headers.setLocation(ucBuilder.path("/api/ejercicios/{codigo}").buildAndExpand(ejer.getEjercicioCodigo()).toUri());
-			response = new ResponseEntity<Void>(headers, HttpStatus.CREATED);
-		}catch(Exception e){
-			response = new ResponseEntity<Void>(HttpStatus.NOT_ACCEPTABLE);
+			response = new ResponseEntity<Integer>(ejer.getEjercicioCodigo(), HttpStatus.CREATED);
+		}catch(Exception e){ //Si hay un error...
+			response = new ResponseEntity<Integer>(-1, HttpStatus.NOT_ACCEPTABLE);
 		}
 		return response;
 	}
